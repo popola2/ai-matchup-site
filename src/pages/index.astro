@@ -1,26 +1,92 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
-<Layout>
-  <header>
-    <h1>AI 公司对比</h1>
-    <p>探索全球 AI 领导者的对抗，谁将在未来主导人工智能领域？</p>
-  </header>
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        background-color: #f9f9f9;
+      }
 
-  <main>
-    <section>
-      <h2>精选对抗</h2>
-      <div class="card-container">
-        <article class="card">
-          <h3><a href="/compare/openai-vs-deepseek">OpenAI vs DeepSeek</a></h3>
-          <p>从模型架构、市场影响力、开源策略等多维度，全面对比 OpenAI 与 DeepSeek，分析谁将主导 AI 的未来。</p>
-        </article>
-      </div>
-    </section>
-  </main>
+      main {
+        max-width: 960px;
+        margin: 2rem auto;
+        padding: 1rem;
+      }
 
-  <footer>
-    <p>&copy; 2025 AI Matchup. All rights reserved.</p>
-  </footer>
-</Layout>
+      .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1rem;
+      }
+
+      .card {
+        background-color: #fff;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+        transition: transform 0.2s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+      }
+
+      .card h3 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+      }
+
+      .card p {
+        margin: 0;
+      }
+
+      header h1 {
+        margin-bottom: 0.5rem;
+      }
+
+      header p {
+        color: #555;
+      }
+
+      footer {
+        text-align: center;
+        padding: 2rem 1rem;
+        color: #999;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <Header />
+    <main>
+      <header>
+        <h1>AI 公司对比</h1>
+        <p>探索全球 AI 领导者的对抗，谁将在未来主导人工智能领域？</p>
+      </header>
+
+      <section>
+        <h2>精选对抗</h2>
+        <div class="card-container">
+          <article class="card">
+            <h3><a href="/compare/openai-vs-deepseek">OpenAI vs DeepSeek</a></h3>
+            <p>从模型架构、市场影响力、开源策略等多维度，全面对比 OpenAI 与 DeepSeek，分析谁将主导 AI 的未来。</p>
+          </article>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
