@@ -1,92 +1,119 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+const chinaAICards = [
+  { id: 'baidu', title: '百度 AI', description: '中国领先的人工智能技术企业', url: '#' },
+  { id: 'deepseek', title: 'DeepSeek', description: '中国AI独角兽，专注搜索与大模型', url: '#' }
+];
+const usaAICards = [
+  { id: 'openai', title: 'OpenAI', description: '美国顶尖AI实验室，ChatGPT开发者', url: '#' },
+  { id: 'google', title: 'Google AI', description: '谷歌人工智能研究', url: '#' }
+];
 ---
 
-<!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <meta charset="UTF-8" />
+    <title>AI中美对抗 - 首页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
       body {
-        font-family: system-ui, sans-serif;
-        margin: 0;
-        padding: 0;
-        line-height: 1.6;
-        background-color: #f9f9f9;
+        font-family: Arial, sans-serif;
+        margin: 0; padding: 0;
+        background: #f0f0f0;
+        color: #222;
       }
-
+      header {
+        background: #222;
+        color: white;
+        padding: 1rem 2rem;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
       main {
-        max-width: 960px;
+        max-width: 1000px;
         margin: 2rem auto;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .column {
+        background: white;
         padding: 1rem;
+        border-radius: 8px;
+        flex: 1;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       }
-
-      .card-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
-        margin-top: 1rem;
-      }
-
-      .card {
-        background-color: #fff;
-        border-radius: 12px;
-        padding: 1.5rem;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-        transition: transform 0.2s ease;
-      }
-
-      .card:hover {
-        transform: translateY(-4px);
-      }
-
-      .card h3 {
-        margin-top: 0;
-        margin-bottom: 0.5rem;
-      }
-
-      .card p {
-        margin: 0;
-      }
-
-      header h1 {
-        margin-bottom: 0.5rem;
-      }
-
-      header p {
+      h2 {
+        text-align: center;
         color: #555;
       }
-
-      footer {
-        text-align: center;
-        padding: 2rem 1rem;
-        color: #999;
+      .vs {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #888;
+        margin: auto 1rem;
+        align-self: center;
+      }
+      .card {
+        border: 1px solid #ddd;
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 6px;
+      }
+      .card h3 {
+        margin: 0 0 0.5rem;
+      }
+      .card p {
+        margin: 0 0 0.5rem;
         font-size: 0.9rem;
+        color: #666;
+      }
+      .card a {
+        display: inline-block;
+        padding: 0.3rem 0.8rem;
+        background: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-size: 0.85rem;
+      }
+      .card a:hover {
+        background: #0056b3;
+      }
+      @media (max-width: 768px) {
+        main {
+          flex-direction: column;
+        }
+        .vs {
+          display: none;
+        }
       }
     </style>
   </head>
-
   <body>
-    <Header />
+    <header>AI 中美对抗 - 首页</header>
     <main>
-      <header>
-        <h1>AI 公司对比</h1>
-        <p>探索全球 AI 领导者的对抗，谁将在未来主导人工智能领域？</p>
-      </header>
-
-      <section>
-        <h2>精选对抗</h2>
-        <div class="card-container">
-          <article class="card">
-            <h3><a href="/compare/openai-vs-deepseek">OpenAI vs DeepSeek</a></h3>
-            <p>从模型架构、市场影响力、开源策略等多维度，全面对比 OpenAI 与 DeepSeek，分析谁将主导 AI 的未来。</p>
-          </article>
-        </div>
+      <section class="column">
+        <h2>中国 AI 公司</h2>
+        {chinaAICards.map(card => (
+          <div class="card" key={card.id}>
+            <h3>{card.title}</h3>
+            <p>{card.description}</p>
+            <a href={card.url}>查看对比</a>
+          </div>
+        ))}
+      </section>
+      <div class="vs">VS</div>
+      <section class="column">
+        <h2>美国 AI 公司</h2>
+        {usaAICards.map(card => (
+          <div class="card" key={card.id}>
+            <h3>{card.title}</h3>
+            <p>{card.description}</p>
+            <a href={card.url}>查看对比</a>
+          </div>
+        ))}
       </section>
     </main>
-    <Footer />
   </body>
 </html>
