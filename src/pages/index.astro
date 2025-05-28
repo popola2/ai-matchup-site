@@ -1,29 +1,19 @@
 ---
-import { Layout } from "../layouts/Layout.astro";
+/**
+ * Layout 组件 - 基础页面结构
+ * 使用方式：包裹页面内容，自动插入 html head 和 body
+ */
 ---
 
-<Layout>
-  <!-- 页面顶部 -->
-  <header>
-    <h1>AI 公司对比</h1>
-    <p>探索全球 AI 领导者的对抗，谁将在未来主导人工智能领域？</p>
-  </header>
-
-  <!-- 对抗卡片展示区 -->
-  <main>
-    <section>
-      <h2>精选对抗</h2>
-      <div class="card-container">
-        <article class="card">
-          <h3><a href="/compare/openai-vs-deepseek">OpenAI vs DeepSeek</a></h3>
-          <p>从模型架构、市场影响力、开源策略等多维度，全面对比 OpenAI 与 DeepSeek，分析谁将主导 AI 的未来。</p>
-        </article>
-      </div>
-    </section>
-  </main>
-
-  <!-- 页脚 -->
-  <footer>
-    <p>&copy; 2025 AI Matchup. All rights reserved.</p>
-  </footer>
-</Layout>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Matchup</title>
+    <meta name="description" content="探索全球 AI 领导者的对抗，了解 OpenAI vs DeepSeek 等对比分析。" />
+    <link rel="stylesheet" href="/styles/global.css" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
