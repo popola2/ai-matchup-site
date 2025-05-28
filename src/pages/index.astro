@@ -13,6 +13,37 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	<body>
 		<Header />
 		<main>
+---
+import { Layout } from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <!-- 主页顶部导航（可选） -->
+  <header>
+    <h1>AI 公司对比</h1>
+    <p>探索全球 AI 领导者的对抗，谁将在未来主导人工智能领域？</p>
+  </header>
+
+  <!-- 主页主要内容 -->
+  <main>
+    <section>
+      <h2>精选对抗</h2>
+      <!-- 对抗卡片区域 -->
+      <div class="card-container">
+        <article class="card">
+          <h3><a href="/compare/openai-vs-deepseek">OpenAI vs DeepSeek</a></h3>
+          <p>从模型架构、市场影响力、开源策略等多维度，全面对比 OpenAI 与 DeepSeek，分析谁将主导 AI 的未来。</p>
+        </article>
+        <!-- 可以在这里添加更多对抗卡片 -->
+      </div>
+    </section>
+  </main>
+  
+  <!-- 页脚 -->
+  <footer>
+    <p>&copy; 2025 AI Matchup. All rights reserved.</p>
+  </footer>
+</Layout>
 			<h1>🧑‍🚀 Hello, Astronaut!</h1>
 			<p>
 				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
