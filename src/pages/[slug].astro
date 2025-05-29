@@ -1,0 +1,69 @@
+---
+type APIComparisonPoint = {
+  label: string;
+  openai: string;
+  deepseek: string;
+};
+
+type APIComparison = {
+  title: string;
+  description: string;
+  points: APIComparisonPoint[];
+  source: string;
+};
+
+// 动态路由参数
+const { slug } = Astro.params;
+
+// 模拟对抗数据（后续可以替换为从 JSON 或 API 读取）
+const matchupData: Record<string, APIComparison> = {
+  "openai-vs-deepseek": {
+    title: "OpenAI vs DeepSeek",
+    description: "一个对比 OpenAI 与 DeepSeek 在大模型研发上的能力、开放程度、社区支持等方面的页面。",
+    points: [
+      { label: "模型性能", openai: "GPT-4.5", deepseek: "DeepSeek-VL 1.5" },
+      { label: "开放性", openai: "API + Playground", deepseek: "API + GitHub开源模型" },
+      { label: "社区生态", openai: "庞大，覆盖全球", deepseek: "中国开发者为主" }
+    ],
+    source: "https://github.com/deepseek-ai"
+  }
+};
+
+// 获取当前 slug 对应的数据（加类型断言）
+const data = slug ? matchupData[slug] : undefined;
+
+// 如果无对应数据，返回 404 页面
+if (!data) {
+  throw Astro.redirect("/404");
+}
+---
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{data.title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <header>{data.title}</header>
+    <p>{data.description}</p>
+    <table border="1" cellpadding="5" cellspacing="0">
+      <thead>
+        <tr>
+          <th>对比点</th>
+          <th>OpenAI</th>
+          <th>DeepSeek</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.points.map(point => (
+          <tr>
+            <td>{point.label}</td>
+            <td>{point.openai}</td>
+            <td>{point.deepseek}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    <p>数据来源: <a href={data.source} target="_blank" rel="noopener noreferrer">{data.source}</a></p>
+  </body>
+</html>
