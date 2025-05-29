@@ -1,12 +1,25 @@
 ---
+// src/pages/index.astro
+import { MatchupGrid } from '../components/MatchupGrid';
+
 const chinaAICards = [
   { id: 'baidu', title: '百度 AI', description: '中国领先的人工智能技术企业', url: '#' },
-  { id: 'deepseek', title: 'DeepSeek', description: '中国AI独角兽，专注搜索与大模型', url: '#' }
+  { id: 'deepseek', title: 'DeepSeek', description: '中国AI独角兽,专注搜索与大模型', url: '#' }
 ];
+
 const usaAICards = [
-  { id: 'openai', title: 'OpenAI', description: '美国顶尖AI实验室，ChatGPT开发者', url: '#' },
+  { id: 'openai', title: 'OpenAI', description: '美国顶尖AI实验室,ChatGPT开发者', url: '#' },
   { id: 'google', title: 'Google AI', description: '谷歌人工智能研究', url: '#' }
 ];
+---
+---
+import "../styles/base.css";
+import "../styles/layout.css";
+import "../styles/MatchupGrid.css";
+import "../styles/MatchupCard.css";
+import "../styles/animations.css";
+
+import MatchupGrid from '../components/MatchupGrid.tsx';
 ---
 
 <html lang="zh-CN">
@@ -14,158 +27,9 @@ const usaAICards = [
     <meta charset="UTF-8" />
     <title>AI中美对抗 - 首页</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-      body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0; padding: 0;
-        background: #121212;
-        color: #eee;
-      }
-      header {
-        background: #1f1f1f;
-        color: white;
-        padding: 1rem 2rem;
-        text-align: center;
-        font-weight: 900;
-        font-size: 2rem;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        border-bottom: 3px solid #e03c31; /* 红色强调 */
-      }
-      main {
-        max-width: 1100px;
-        margin: 2rem auto;
-        display: flex;
-        justify-content: space-between;
-        gap: 2rem;
-        align-items: center;
-      }
-      .column {
-        background: #222;
-        padding: 1.5rem 1rem;
-        border-radius: 12px;
-        flex: 1;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.7);
-        border: 3px solid transparent;
-        transition: border-color 0.3s ease;
-      }
-      .column.china {
-        border-color: #e03c31; /* 中国红 */
-      }
-      .column.usa {
-        border-color: #3b72ff; /* 美国蓝 */
-      }
-      h2 {
-        text-align: center;
-        color: #ccc;
-        margin-bottom: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        font-weight: 700;
-        user-select: none;
-      }
-      .vs {
-        font-size: 5rem;
-        font-weight: 900;
-        color: #f0a500;
-        text-shadow:
-          0 0 10px #f0a500,
-          0 0 20px #f0a500,
-          0 0 30px #f0a500,
-          0 0 40px #f0a500;
-        margin: 0 1rem;
-        user-select: none;
-        animation: flicker 2.5s infinite;
-      }
-      @keyframes flicker {
-        0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-          opacity: 1;
-        }
-        20%, 22%, 24%, 55% {
-          opacity: 0.4;
-        }
-      }
-      .card {
-        background: #1a1a1a;
-        border: 1.5px solid transparent;
-        padding: 1rem 1.2rem;
-        margin: 1rem 0;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-        transition:
-          border-color 0.25s ease,
-          transform 0.25s ease,
-          box-shadow 0.25s ease;
-        cursor: pointer;
-      }
-      .card:hover {
-        border-color: #f0a500;
-        box-shadow: 0 8px 15px rgba(240,165,0,0.7);
-        transform: translateY(-5px);
-      }
-      .card h3 {
-        margin: 0 0 0.5rem;
-        color: #f0a500;
-        font-weight: 700;
-      }
-      .card p {
-        margin: 0 0 0.8rem;
-        font-size: 0.95rem;
-        color: #ccc;
-      }
-      .card a {
-        display: inline-block;
-        padding: 0.4rem 1rem;
-        background: #f0a500;
-        color: #121212;
-        font-weight: 600;
-        text-decoration: none;
-        border-radius: 4px;
-        font-size: 0.9rem;
-        user-select: none;
-        transition: background-color 0.3s ease;
-      }
-      .card a:hover {
-        background: #d18e00;
-      }
-      @media (max-width: 900px) {
-        main {
-          flex-direction: column;
-        }
-        .vs {
-          display: none;
-        }
-        .column {
-          width: 100%;
-          margin-bottom: 2rem;
-        }
-      }
-    </style>
   </head>
   <body>
     <header>AI 中美对抗 - 首页</header>
-    <main>
-      <section class="column china" aria-label="中国 AI 公司">
-        <h2>中国 AI 公司</h2>
-        {chinaAICards.map(card => (
-          <div class="card" key={card.id} tabindex="0" role="article" aria-labelledby={`${card.id}-title`}>
-            <h3 id={`${card.id}-title`}>{card.title}</h3>
-            <p>{card.description}</p>
-            <a href={card.url} aria-label={`查看 ${card.title} 对比详情`}>查看对比</a>
-          </div>
-        ))}
-      </section>
-      <div class="vs" aria-hidden="true">VS</div>
-      <section class="column usa" aria-label="美国 AI 公司">
-        <h2>美国 AI 公司</h2>
-        {usaAICards.map(card => (
-          <div class="card" key={card.id} tabindex="0" role="article" aria-labelledby={`${card.id}-title`}>
-            <h3 id={`${card.id}-title`}>{card.title}</h3>
-            <p>{card.description}</p>
-            <a href={card.url} aria-label={`查看 ${card.title} 对比详情`}>查看对比</a>
-          </div>
-        ))}
-      </section>
-    </main>
+    <MatchupGrid chinaCards={chinaAICards} usaCards={usaAICards} />
   </body>
 </html>

@@ -1,0 +1,36 @@
+.column {
+  background: #222;
+  padding: 1.5rem 1rem;
+  border-radius: 12px;
+  flex: 1;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+  border: 3px solid transparent;
+  transition: border-color 0.3s ease;
+}
+.column.china {
+  border-color: #e03c31;
+}
+.column.usa {
+  border-color: #3b72ff;
+}
+h2 {
+  text-align: center;
+  color: #ccc;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+.vs {
+  font-size: 5rem;
+  font-weight: 900;
+  color: #f0a500;
+  text-shadow: 0 0 10px #f0a500, 0 0 20px #f0a500;
+  margin: 0 1rem;
+  animation: flicker 2.5s infinite;
+}
+@media (max-width: 900px) {
+  .vs {
+    display: none;
+  }
+}
