@@ -1,6 +1,5 @@
 ---
-// src/pages/index.astro
-import { MatchupGrid } from '../components/MatchupGrid';
+import MatchupGrid from '../components/MatchupGrid.tsx';
 
 const chinaAICards = [
   { id: 'baidu', title: '百度 AI', description: '中国领先的人工智能技术企业', url: '#' },
@@ -8,18 +7,9 @@ const chinaAICards = [
 ];
 
 const usaAICards = [
-  { id: 'openai', title: 'OpenAI', description: '美国顶尖AI实验室,ChatGPT开发者', url: '#' },
+  { id: 'openai', title: 'OpenAI', description: '美国顶尖AI实验室，ChatGPT开发者', url: '#' },
   { id: 'google', title: 'Google AI', description: '谷歌人工智能研究', url: '#' }
 ];
----
----
-import "../styles/base.css";
-import "../styles/layout.css";
-import "../styles/MatchupGrid.css";
-import "../styles/MatchupCard.css";
-import "../styles/animations.css";
-
-import MatchupGrid from '../components/MatchupGrid.tsx';
 ---
 
 <html lang="zh-CN">
@@ -27,9 +17,18 @@ import MatchupGrid from '../components/MatchupGrid.tsx';
     <meta charset="UTF-8" />
     <title>AI中美对抗 - 首页</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../styles/base.css" />
+    <link rel="stylesheet" href="../styles/layout.css" />
+    <link rel="stylesheet" href="../styles/MatchupGrid.css" />
+    <link rel="stylesheet" href="../styles/MatchupCard.css" />
+    <link rel="stylesheet" href="../styles/animations.css" />
   </head>
   <body>
-    <header>AI 中美对抗 - 首页</header>
-    <MatchupGrid chinaCards={chinaAICards} usaCards={usaAICards} />
+    <header style="padding: 1rem; font-size: 1.5rem; font-weight: bold; text-align: center;">
+      AI 中美对抗 - 首页
+    </header>
+    <main style="padding: 2rem;">
+      <MatchupGrid chinaCards={chinaAICards} usaCards={usaAICards} />
+    </main>
   </body>
 </html>
